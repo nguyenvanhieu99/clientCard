@@ -42,33 +42,8 @@ public class Searchview extends javax.swing.JFrame {
         jten.setText(ten);
         userSendObject sen = new userSendObject(Command.LOGINDONE, true, us);
         cl.sendData(sen);
-        serverSendObject sso = cl.receiveData();
-        String k[];
-        dfm = new DefaultListModel<String>();
-        if (sso.getCommand() == Command.GETALLCLIENT) {
-            ArrayList<Object> d = sso.getList();
-            for (int i = 0; i < d.size(); i++) {
-                Status st;
-                st = (Status) d.get(i);
-                log(st.toString());
-                dfm.addElement(st.toString());
-
-            }
-            jList1.setModel(dfm);
-        }
-        jList1.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                String lis[];
-                lis = jList1.getSelectedValue().split(":");
-                Status u = new Status(lis[0], lis[1], Integer.parseInt(lis[2]));
-                userSendObject us = new userSendObject(Command.CHALLENGE, true, u);
-                cl.sendData(us);
-                showMessage(jList1.getSelectedValue());
-                // openroom(true);
-            }
-        });
-
+        //serverSendObject sso = cl.receiveData();
+        //String k[];
         thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -129,6 +104,32 @@ public class Searchview extends javax.swing.JFrame {
             }
         });
         thread.start();
+        //dfm = new DefaultListModel<String>();
+//        if (sso.getCommand() == Command.GETALLCLIENT) {
+//            ArrayList<Object> d = sso.getList();
+//            for (int i = 0; i < d.size(); i++) {
+//                Status st;
+//                st = (Status) d.get(i);
+//                log(st.toString());
+//                dfm.addElement(st.toString());
+//
+//            }
+//            jList1.setModel(dfm);
+//        }
+        jList1.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                String lis[];
+                lis = jList1.getSelectedValue().split(":");
+                Status u = new Status(lis[0], lis[1], Integer.parseInt(lis[2]));
+                userSendObject us = new userSendObject(Command.CHALLENGE, true, u);
+                cl.sendData(us);
+                showMessage(jList1.getSelectedValue());
+                // openroom(true);
+            }
+        });
+
+        
 
     }
 

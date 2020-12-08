@@ -68,14 +68,17 @@ public class RoomView extends javax.swing.JFrame {
                         showall();
                         if (playagain("ban muon coi lai khong ")) {
                             if (check == false) {
-                                
                                 openSearch(c);
                                 
                             }
                         } else {
-                            userSendObject uso = new userSendObject(Command.CONTINUE, false, ob);
+                            if(check==false){
+                                openSearch(c); 
+                            }
+                                userSendObject uso = new userSendObject(Command.CONTINUE, false, ob);
                             cl.sendData(uso);
-                            openSearch(c);
+                             openSearch(c);
+                           
 
                         }
 
@@ -136,7 +139,7 @@ public class RoomView extends javax.swing.JFrame {
         Ten2.setForeground(new java.awt.Color(0, 0, 0));
         Ten2.setText("Nguyen Van Hieu");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("F:\\31940\\free-people-flat-design\\png_96\\army-military-soldier-general-commander-officer-war-1659531-1410053.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("F:\\31940\\free-people-flat-design\\png_96\\girl-1659455-1409977.png")); // NOI18N
         jLabel1.setText("jLabel1");
 
         Diem2.setText("Diem so ");
@@ -178,7 +181,7 @@ public class RoomView extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 51, 51));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("F:\\31940\\free-people-flat-design\\png_96\\asian-1659529-1410051.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/avatar-1659528-1410050.png"))); // NOI18N
         jLabel2.setText("Nguyen van tuan");
 
         Ten3.setForeground(new java.awt.Color(0, 51, 51));
@@ -222,7 +225,7 @@ public class RoomView extends javax.swing.JFrame {
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel3.setForeground(new java.awt.Color(255, 255, 51));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("F:\\31940\\free-people-flat-design\\png_96\\relax-1659476-1409998.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/avatar-1659503-1410025.png"))); // NOI18N
         jLabel3.setText("jLabel3");
 
         Ten4.setForeground(new java.awt.Color(0, 51, 51));
@@ -265,7 +268,7 @@ public class RoomView extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(0, 153, 153));
         jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("F:\\31940\\free-people-flat-design\\png_96\\king-1659499-1410021.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/angry-1659533-1410055.png"))); // NOI18N
         jLabel4.setText("jLabel4");
 
         Ten1.setForeground(new java.awt.Color(0, 0, 0));
@@ -285,31 +288,29 @@ public class RoomView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(Ten1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(Diem1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                        .addComponent(Bai1)))
-                .addContainerGap())
+                        .addGap(18, 18, 18)
+                        .addComponent(Bai1))
+                    .addComponent(Ten1))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Diem1)
-                        .addComponent(Bai1))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(Ten1)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(Ten1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Diem1)
+                    .addComponent(Bai1))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 240, 100));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon("F:\\royal-flush-playing-card-poker-table_23-2147881130.jpg")); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/royal-flush-playing-card-poker-table_23-2147881130.jpg"))); // NOI18N
         jLabel7.setText("jLabel7");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 630, 450));
 
@@ -348,7 +349,6 @@ public class RoomView extends javax.swing.JFrame {
     public void openSearch(boolean c) {
        
         Searchview rv = new Searchview(o, cl);
-
         rv.setVisible(true);
         this.dispose();
          thread.stop();
