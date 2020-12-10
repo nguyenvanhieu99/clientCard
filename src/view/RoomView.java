@@ -13,6 +13,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import model.Status;
 import model.Stringsend;
+import model.ThreeCard;
 import model.User;
 import model.serverSendObject;
 import model.userSendObject;
@@ -33,11 +34,14 @@ public class RoomView extends javax.swing.JFrame {
     String s[];
     Status sta1[];
     boolean check;
+    ThreeCard tc[];
+    int stt;
     public RoomView(User o, ClientControl cl, boolean c) {
         this.o = o;
         this.cl = cl;
         this.c = c;
-        this.check=true;
+        this.check = true;
+        tc=new ThreeCard[4];
         sta1 = new Status[4];
         initComponents();
         if (!c) {
@@ -55,7 +59,6 @@ public class RoomView extends javax.swing.JFrame {
                     if (sso.getCommand() == Command.PLAY) {
                         //log()
                         Stringsend ob = (Stringsend) sso.getObject();
-
                         ArrayList<Status> as = new ArrayList<Status>();
                         for (int i = 0; i < ao.size(); i++) {
                             Status k = (Status) ao.get(i);
@@ -65,22 +68,8 @@ public class RoomView extends javax.swing.JFrame {
 
                         }
                         s = ob.getK();
-                        showall();
-                        if (playagain("ban muon coi lai khong ")) {
-                            if (check == false) {
-                                openSearch(c);
-                                
-                            }
-                        } else {
-                            if(check==false){
-                                openSearch(c); 
-                            }
-                                userSendObject uso = new userSendObject(Command.CONTINUE, false, ob);
-                            cl.sendData(uso);
-                             openSearch(c);
-                           
-
-                        }
+                        tc=ob.getTt();
+                        showall(ob);
 
                     } else if (sso.getCommand() == Command.CONTINUE) {
                         check = false;
@@ -88,8 +77,18 @@ public class RoomView extends javax.swing.JFrame {
                             openSearch(c);
                         }
 
-                    } else if (sso.getCommand() == Command.GETALLCLIENT) {
+                    } else if (sso.getCommand() == Command.JOINTABLE) {
+                        Stringsend ob = (Stringsend) sso.getObject();
+                        ArrayList<Status> as = new ArrayList<Status>();
+                        for (int i = 0; i < ao.size(); i++) {
+                            Status k = (Status) ao.get(i);
+                            //logcon(k.toString2());
+                            sta1[i] = k;
+                            as.add(k);
 
+                        }
+                        s = ob.getK();
+                        showall(ob);
                     }
                 }
 
@@ -144,7 +143,7 @@ public class RoomView extends javax.swing.JFrame {
 
         Diem2.setText("Diem so ");
 
-        Bai2.setText("jLabel16");
+        Bai2.setText("Lá Bài");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -159,7 +158,7 @@ public class RoomView extends javax.swing.JFrame {
                         .addComponent(Diem2)
                         .addGap(18, 18, 18)
                         .addComponent(Bai2)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,7 +188,7 @@ public class RoomView extends javax.swing.JFrame {
 
         jLabel11.setText("Diem so ");
 
-        Bai3.setText("jLabel15");
+        Bai3.setText("Lá Bài:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -200,9 +199,11 @@ public class RoomView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Ten3)
-                    .addComponent(jLabel11)
-                    .addComponent(Bai3))
-                .addGap(0, 44, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(18, 18, 18)
+                        .addComponent(Bai3)))
+                .addGap(0, 20, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,9 +214,9 @@ public class RoomView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(Ten3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Bai3)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(Bai3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -233,7 +234,7 @@ public class RoomView extends javax.swing.JFrame {
 
         jLabel10.setText("Diem so ");
 
-        bai4.setText("jLabel14");
+        bai4.setText("Lá Bài:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -244,9 +245,11 @@ public class RoomView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Ten4)
-                    .addComponent(jLabel10)
-                    .addComponent(bai4))
-                .addGap(0, 69, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
+                        .addComponent(bai4)))
+                .addGap(0, 17, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,9 +260,9 @@ public class RoomView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(Ten4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bai4)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(bai4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -276,7 +279,7 @@ public class RoomView extends javax.swing.JFrame {
 
         Diem1.setText("Diem so ");
 
-        Bai1.setText("jLabel17");
+        Bai1.setText("Lá Bài");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -292,7 +295,7 @@ public class RoomView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(Bai1))
                     .addComponent(Ten1))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,15 +350,15 @@ public class RoomView extends javax.swing.JFrame {
     }
 
     public void openSearch(boolean c) {
-       
+
         Searchview rv = new Searchview(o, cl);
         rv.setVisible(true);
         this.dispose();
-         thread.stop();
-        
+        thread.stop();
+
     }
 
-    public void showall() {
+    public void showall(Stringsend ob) {
         Ten1.setText(sta1[0].getName());
         Diem1.setText(sta1[0].getDiem() + "");
         //Bai1.setText(sta1[0].getAllnum());
@@ -364,6 +367,32 @@ public class RoomView extends javax.swing.JFrame {
         Diem2.setText(sta1[1].getDiem() + "");
         // Bai2.setText(sta1[1].getAllnum());
         Bai2.setText(s[1]);
+        int term1 = 0;
+        for(int i=0;i<sta1.length;i++){
+            if(sta1[i].getName().equals(o.getUserName())){
+               term1= tc[i].getTt();
+               break;
+            }
+                
+            
+        }
+        if (playagain("Chuc mung :"+o.getUserName()+",Ban dung thu"+term1)) {
+            System.out.println(".run()" + check);
+            if (check == false) {
+                openSearch(c);
+
+            }
+        } else {
+            if (check == false) {
+                openSearch(c);
+            } else {
+                System.out.println(".run()" + check);
+                userSendObject uso = new userSendObject(Command.CONTINUE, false, ob);
+                cl.sendData(uso);
+                openSearch(c);
+            }
+
+        }
 
     }
 

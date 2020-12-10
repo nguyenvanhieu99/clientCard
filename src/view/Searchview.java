@@ -39,9 +39,10 @@ public class Searchview extends javax.swing.JFrame {
         o = us;
         initComponents();
         String ten = "xin chao : " + us.getUserName();
+        log(ten);
         jten.setText(ten);
         userSendObject sen = new userSendObject(Command.LOGINDONE, true, us);
-        cl.sendData(sen);
+        ds.sendData(sen);
         //serverSendObject sso = cl.receiveData();
         //String k[];
         thread = new Thread(new Runnable() {
@@ -126,6 +127,18 @@ public class Searchview extends javax.swing.JFrame {
                 cl.sendData(us);
                 showMessage(jList1.getSelectedValue());
                 // openroom(true);
+            }
+        });
+        jList2.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                String lis[];
+                lis = jList2.getSelectedValue().split(":");
+                Status u = new Status(lis[0], lis[1], Integer.parseInt(lis[2]));
+                userSendObject us = new userSendObject(Command.JOINTABLE, true, u);
+                cl.sendData(us);
+                showMessage(jList2.getSelectedValue());
+                 openroom(false);
             }
         });
 
@@ -336,7 +349,10 @@ public class Searchview extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        userSendObject sen = new userSendObject(Command.CREATTABLE, true, o);
+        cl.sendData(sen);
+         openroom(true);
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
