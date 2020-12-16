@@ -8,6 +8,7 @@ package view;
 import Control.ClientControl;
 import Control.Command;
 import java.util.ArrayList;
+import java.util.Vector;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -30,7 +31,7 @@ public class Searchview extends javax.swing.JFrame {
     ClientControl cl;
     DefaultListModel<String> dfm;
     DefaultListModel<String> dfm1;
-
+    Vector <Status> vsta;
     User o;
     Thread thread;
 
@@ -98,6 +99,14 @@ public class Searchview extends javax.swing.JFrame {
 
                         }
                         jList2.setModel(dfm1);
+                    } else if(sso.getCommand()==Command.RANK){
+                        vsta=new Vector<>();
+                        ArrayList<Object> d = sso.getList();
+                        for (int i = 0; i < d.size(); i++) {
+                            Status st=(Status) d.get(i);
+                            vsta.add(st);
+                        }
+                        
                     }
 
                 }
@@ -122,10 +131,15 @@ public class Searchview extends javax.swing.JFrame {
             public void valueChanged(ListSelectionEvent e) {
                 String lis[];
                 lis = jList1.getSelectedValue().split(":");
+                
                 Status u = new Status(lis[0], lis[1], Integer.parseInt(lis[2]));
+                
                 userSendObject us = new userSendObject(Command.CHALLENGE, true, u);
+                
                 cl.sendData(us);
+                
                 showMessage(jList1.getSelectedValue());
+                
                 // openroom(true);
             }
         });
@@ -168,14 +182,18 @@ public class Searchview extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jten.setText("jLabel1");
+        getContentPane().add(jten, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Historic", 2, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 0, 102));
         jLabel3.setText("Home playing card");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 227, -1));
 
         jLabel1.setText("list table ");
 
@@ -248,6 +266,8 @@ public class Searchview extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 44, -1, 231));
+
         jButton4.setText("Tạo phòng");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -298,40 +318,11 @@ public class Searchview extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jten)
-                .addGap(199, 199, 199))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jten)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(35, Short.MAX_VALUE))))
-        );
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(396, 76, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\van hieu\\Music\\04.jpg")); // NOI18N
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, -150, 590, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -346,6 +337,10 @@ public class Searchview extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        Rankview rv=new Rankview(vsta);
+        rv.setVisible(true);
+        
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -409,6 +404,7 @@ public class Searchview extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JList<String> jList1;

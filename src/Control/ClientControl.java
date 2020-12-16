@@ -11,13 +11,13 @@ import model.userRegister;
 import model.userSendObject;
 
 public class ClientControl {
-     private ObjectInputStream ois;
+    
+    private ObjectInputStream ois;
     private ObjectOutputStream oos;
     private Socket mySocket;
     private String serverHost = "localhost";
-    private int serverPort = 8080;
+    private int serverPort = 8088;
     
-
     public ClientControl() throws IOException {
         this.mySocket = new Socket(serverHost, serverPort);
         oos= new ObjectOutputStream(mySocket.getOutputStream());

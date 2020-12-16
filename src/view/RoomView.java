@@ -128,6 +128,7 @@ public class RoomView extends javax.swing.JFrame {
         Bai1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -314,7 +315,7 @@ public class RoomView extends javax.swing.JFrame {
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 240, 100));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/royal-flush-playing-card-poker-table_23-2147881130.jpg"))); // NOI18N
-        jLabel7.setText("jLabel7");
+        jLabel7.setText("chia bai");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 630, 450));
 
         jButton1.setText("jButton1");
@@ -325,6 +326,14 @@ public class RoomView extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 240, 110, 160));
 
+        jButton2.setText("return");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -334,6 +343,14 @@ public class RoomView extends javax.swing.JFrame {
         cl.sendData(uso);
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Searchview sea=new Searchview(o, cl);
+        this.dispose();
+        sea.setVisible(true);
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
     private void showMessage(String msg) {
         JOptionPane.showMessageDialog(this, msg);
 
@@ -376,7 +393,7 @@ public class RoomView extends javax.swing.JFrame {
                 
             
         }
-        if (playagain("Chuc mung :"+o.getUserName()+",Ban dung thu"+term1)) {
+        if (playagain("Chuc mung :"+o.getUserName()+",Ban duoc them "+term1)) {
             System.out.println(".run()" + check);
             if (check == false) {
                 openSearch(c);
@@ -459,7 +476,7 @@ public class RoomView extends javax.swing.JFrame {
             }
         });
     }
-
+    
     private void log(String s) {
         JOptionPane.showConfirmDialog(null, s);
     }
@@ -479,6 +496,7 @@ public class RoomView extends javax.swing.JFrame {
     private javax.swing.JLabel Ten4;
     private javax.swing.JLabel bai4;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
