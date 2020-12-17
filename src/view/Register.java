@@ -149,8 +149,10 @@ public class Register extends javax.swing.JFrame {
                 
                 if (re.isCheck()) {
                     showMessage("register succesfully!");
-                    Searchview se=new Searchview(model,clientCtr);
-                    se.setVisible(true);
+//                    Searchview se=new Searchview(model,clientCtr);
+//                    se.setVisible(true);
+                      clientView1 clv=new clientView1();
+                      clv.setVisible(true);
                     this.dispose();
                 } else {
                     showMessage("Invalid username and/or password!");
