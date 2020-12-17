@@ -318,13 +318,13 @@ public class RoomView extends javax.swing.JFrame {
         jLabel7.setText("chia bai");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 630, 450));
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Chia Bai");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 240, 110, 160));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 240, 120, 160));
 
         jButton2.setText("return");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
