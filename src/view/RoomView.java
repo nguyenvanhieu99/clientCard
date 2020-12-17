@@ -139,7 +139,7 @@ public class RoomView extends javax.swing.JFrame {
         Ten2.setForeground(new java.awt.Color(0, 0, 0));
         Ten2.setText("Nguyen Van Hieu");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("F:\\31940\\free-people-flat-design\\png_96\\girl-1659455-1409977.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/worker-1659453-1409975.png"))); // NOI18N
         jLabel1.setText("jLabel1");
 
         Diem2.setText("Diem so ");

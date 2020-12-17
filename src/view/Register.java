@@ -127,7 +127,7 @@ public class Register extends javax.swing.JFrame {
         jLabel4.setText("REGISTER");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\van hieu\\Music\\02.jpg")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/02.jpg"))); // NOI18N
         jLabel5.setText("j");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
